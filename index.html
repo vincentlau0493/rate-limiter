@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Rate Limiter</title>
+	<script src="rate_limiter.js"></script>
+</head>
+<body>
+	<script>
+		var rateLimiter = new RateLimiter(3000);
+
+
+		for (var i=0; i<5; i++) {
+			var myFunction = (function(cnt){
+				var f = function(num) {
+					console.log('I am called ' + num);
+				}
+				return f.bind(null, cnt);			
+			})(i);
+
+			rateLimiter.addAndCall(myFunction);
+		}
+
+	</script>
+</body>
+</html>
